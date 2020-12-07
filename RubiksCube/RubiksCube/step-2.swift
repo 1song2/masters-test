@@ -22,9 +22,6 @@ struct FlatCube {
     
     mutating func turnCube(_ moveNotation: String) -> [[String]]? {
         switch moveNotation {
-        case "Q":
-            print("Bye👋")
-            return nil
         /// 가장 윗줄을 왼쪽으로 한 칸 밀기
         case "U":
             turnLeft(row: 0)
