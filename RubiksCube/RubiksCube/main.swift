@@ -7,8 +7,8 @@
 
 import Foundation
 
-let input = readLine() ?? ""
-print("\(input): \(pushChracters(input))")
+//let input = readLine() ?? ""
+//print("\(input): \(pushChracters(input))")
 /// Test cases
 //print(pushChracters("apple 3 L"))   // leapp
 //print(pushChracters("banana 6 R"))  // banana
@@ -17,3 +17,6 @@ print("\(input): \(pushChracters(input))")
 //print(pushChracters("apple 3 R"))   // pleap
 //print(pushChracters("apple -3 L"))  // pleap
 //print(pushChracters("apple -3 R"))  // leapp
+
+let myCube = FlatCube()
+myCube.printCube()
