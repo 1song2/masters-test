@@ -10,10 +10,16 @@ import Foundation
 let input = readLine() ?? ""
 
 func pushChracters(_ input: String) {
-    let word = input.components(separatedBy: " ")[0]
-    let number = input.components(separatedBy: " ")[1]
-    let direction = input.components(separatedBy: " ")[2]
-    print("word: \(word), number: \(number), direction: \(direction)")
+    let inputArray = input.components(separatedBy: " ")
+    var word = inputArray[0]
+    guard let number = Int(inputArray[1]) else { return }
+    let direction = inputArray[2]
+    
+    //apple 3 L부터 구현해보기
+    for _ in 0..<number {
+        word += "\(word.removeFirst())"
+    }
+    print(word)
 }
 
 pushChracters(input)
