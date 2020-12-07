@@ -8,18 +8,12 @@
 import Foundation
 
 let input = readLine() ?? ""
-
-func pushChracters(_ input: String) {
-    let inputArray = input.components(separatedBy: " ")
-    var word = inputArray[0]
-    guard let number = Int(inputArray[1]) else { return }
-    let direction = inputArray[2]
-    
-    //apple 3 L부터 구현해보기
-    for _ in 0..<number {
-        word += "\(word.removeFirst())"
-    }
-    print(word)
-}
-
-pushChracters(input)
+print("\(input): \(pushChracters(input))")
+/// Test cases
+//print(pushChracters("apple 3 L"))   // leapp
+//print(pushChracters("banana 6 R"))  // banana
+//print(pushChracters("carrot -1 r")) // arrotc
+//print(pushChracters("cat -4 R"))    // atc
+//print(pushChracters("apple 3 R"))   // pleap
+//print(pushChracters("apple -3 L"))  // pleap
+//print(pushChracters("apple -3 R"))  // leapp
