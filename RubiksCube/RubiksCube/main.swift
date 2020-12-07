@@ -19,19 +19,28 @@ import Foundation
 //print(pushChracters("apple -3 R"))  // leapp
 
 //TODO: - 결과값 프린트 후 exit 하지 않고 다른 input을 받을 수 있게 readLine() 준비해야 함
-//TODO: - 한번에 여러 문자 입력하는 경우 어떻게 처리할 지 생각 (UUR 같은 경우 forEach로 처리 가능하지만 작은따옴표가 포함된다면?)
 //TODO: - 객체를 적절히 활용할 것
 
 var myCube = FlatCube()
 myCube.printCube(myCube.originalCube)
 print()
 print("CUBE>", terminator: " ")
-let input = readLine() ?? ""
+var input = readLine() ?? ""
 
-//input.forEach { myCube.moveCube("\($0)") }
+var inputArray = [String]()
+while input.count != 0 {
+    let firstCharacter = input.removeFirst()
+    if input.first == "'" {
+        inputArray.append("\(firstCharacter)\(input.removeFirst())")
+    } else {
+        inputArray.append("\(firstCharacter)")
+    }
+}
 
-if let safeCube = myCube.turnCube(input) {
-    print()
-    print(input)
-    myCube.printCube(safeCube)
+inputArray.forEach { input in
+    if let safeCube = myCube.turnCube(input) {
+        print()
+        print(input)
+        myCube.printCube(safeCube)
+    }
 }
