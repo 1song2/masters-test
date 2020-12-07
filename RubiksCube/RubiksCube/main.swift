@@ -18,5 +18,13 @@ import Foundation
 //print(pushChracters("apple -3 L"))  // pleap
 //print(pushChracters("apple -3 R"))  // leapp
 
-let myCube = FlatCube()
-myCube.printCube()
+//TODO: - 결과값 프린트 후 exit 하지 않고 다른 input을 받을 수 있게 준비해야 함
+
+var myCube = FlatCube()
+myCube.printCube(myCube.originalCube)
+print()
+print("CUBE>", terminator: " ")
+let input = readLine() ?? ""
+
+input.forEach { myCube.moveCube("\($0)") }
+
