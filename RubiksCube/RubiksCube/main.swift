@@ -7,5 +7,13 @@
 
 import Foundation
 
-print("Hello, World!")
+let input = readLine() ?? ""
 
+func pushChracters(_ input: String) {
+    let word = input.components(separatedBy: " ")[0]
+    let number = input.components(separatedBy: " ")[1]
+    let direction = input.components(separatedBy: " ")[2]
+    print("word: \(word), number: \(number), direction: \(direction)")
+}
+
+pushChracters(input)
