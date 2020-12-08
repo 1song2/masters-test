@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E47B58E6257F246C003CD6D2 /* step-3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47B58E5257F246C003CD6D2 /* step-3.swift */; };
 		E487A693257DF5DE001728FF /* step-2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E487A692257DF5DE001728FF /* step-2.swift */; };
 		E4EB824D257DCB9100F9215F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB824C257DCB9100F9215F /* main.swift */; };
 		E4EB8255257DCBB600F9215F /* step-1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB8254257DCBB600F9215F /* step-1.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E47B58E5257F246C003CD6D2 /* step-3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "step-3.swift"; sourceTree = "<group>"; };
 		E487A692257DF5DE001728FF /* step-2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "step-2.swift"; sourceTree = "<group>"; };
 		E4EB8249257DCB9100F9215F /* RubiksCube */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RubiksCube; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4EB824C257DCB9100F9215F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				E4EB824C257DCB9100F9215F /* main.swift */,
 				E4EB8254257DCBB600F9215F /* step-1.swift */,
 				E487A692257DF5DE001728FF /* step-2.swift */,
+				E47B58E5257F246C003CD6D2 /* step-3.swift */,
 			);
 			path = RubiksCube;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 				E4EB824D257DCB9100F9215F /* main.swift in Sources */,
 				E487A693257DF5DE001728FF /* step-2.swift in Sources */,
 				E4EB8255257DCBB600F9215F /* step-1.swift in Sources */,
+				E47B58E6257F246C003CD6D2 /* step-3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
