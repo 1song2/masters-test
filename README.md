@@ -69,12 +69,14 @@ func printCube(_ cube: [[String]]) {
 ```
 3. 사용자 입력값에 따라 큐브의 특정 한줄을 특정 방향으로 한칸 미는 동작을 하는 turnCube() 메소드를 선언한다. 움직이는 방향(좌우상하)에 따라 하위 모듈 메소드를 만들어 호출해 사용할 수 있도록 했다. cube 프로퍼티를 수정해야 하므로 메소드 앞에 mutating 키워드를 붙인다.
 4. 사용자 입력값에 turnCube() 메소드를 적용할 수 있도록 가공하는 enterMoveNotation() 함수를 선언한다.
+
 4-1. 키보드 입력을 받기 전 'CUBE>'를 콘솔에 표시하기 위해 print() 함수를 사용한다. 이때 terminator 인자를 사용해 줄바꿈이 되지 않도록 한다.
 ```Swift
 print("CUBE>", terminator: " ")
 var input = readLine() ?? ""
 ```
 4-2. if문을 사용해 사용자 입력값이 "Q"이면 "Bye👋"를 출력하고 프로그램이 더 이상 이어지지 않게 한다. (= 프로그램을 종료한다.)
+
 4-3. 입력값이 "Q"가 아니라면 String을 Array로 가공해 여러 문자도 순서대로 처리해줄 수 있게 한다. 이때 문자에 아포스트로피(')가 포함된 경우를 고려해야 하므로 while문을 이용해 적절한 위치에서 String을 끊어갈 수 있도록 조치했다.
 ```Swift
 var inputArray = [String]()
