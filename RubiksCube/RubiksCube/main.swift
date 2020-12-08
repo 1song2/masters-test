@@ -19,29 +19,32 @@ import Foundation
 //print(pushChracters("apple -3 R"))  // leapp
 
 //TODO: - 객체를 적절히 활용할 것
-var myCube = FlatCube()
-myCube.printCube(myCube.cube)
-enterMoveNotation()
+//var myCube = FlatCube()
+//myCube.printCube(myCube.cube)
+//enterMoveNotation()
+//
+//func enterMoveNotation() {
+//    print()
+//    print("CUBE>", terminator: " ")
+//    var input = readLine() ?? ""
+//    
+//    if input == "Q" {
+//        print("Bye👋")
+//    } else {
+//        var inputArray = [String]()
+//        while input.count != 0 {
+//            let firstChar = input.removeFirst()
+//            input.first == "'" ? inputArray.append("\(firstChar)\(input.removeFirst())") : inputArray.append("\(firstChar)")
+//        }
+//
+//        inputArray.forEach { input in
+//            print()
+//            print(input)
+//            myCube.printCube(myCube.turnCube(input))
+//        }
+//        enterMoveNotation()
+//    }
+//}
 
-func enterMoveNotation() {
-    print()
-    print("CUBE>", terminator: " ")
-    var input = readLine() ?? ""
-    
-    if input == "Q" {
-        print("Bye👋")
-    } else {
-        var inputArray = [String]()
-        while input.count != 0 {
-            let firstChar = input.removeFirst()
-            input.first == "'" ? inputArray.append("\(firstChar)\(input.removeFirst())") : inputArray.append("\(firstChar)")
-        }
-
-        inputArray.forEach { input in
-            print()
-            print(input)
-            myCube.printCube(myCube.turnCube(input))
-        }
-        enterMoveNotation()
-    }
-}
+var rubiksCube = RubiksCube()
+rubiksCube.printCube()
