@@ -29,32 +29,31 @@ var rubiksCube = RubiksCube(
     F: Side(topLayer: ["O", "O", "O"], middleLayer: ["O", "O", "O"], bottomLayer: ["O", "O", "O"]),
     R: Side(topLayer: ["G", "G", "G"], middleLayer: ["G", "G", "G"], bottomLayer: ["G", "G", "G"]),
     B: Side(topLayer: ["Y", "Y", "Y"], middleLayer: ["Y", "Y", "Y"], bottomLayer: ["Y", "Y", "Y"]),
-    D: Side(topLayer: ["R", "R", "R"], middleLayer: ["R", "R", "R"], bottomLayer: ["R", "R", "R"]))
+    D: Side(topLayer: ["R", "R", "R"], middleLayer: ["R", "R", "R"], bottomLayer: ["R", "R", "R"])
+)
 
-rubiksCube.printCube()
+rubiksCube.printCube(rubiksCube)
+enterNotation()
 
-//rubiksCube.printCube(rubiksCube.cube)
-//enterNotation(rubiksCube)
+func enterNotation() {
+    print()
+    print("CUBE>", terminator: " ")
+    let input = readLine() ?? ""
 
-//func enterNotation(_ cube: RubiksCube) {
-//    var newCube = cube
-//    print()
-//    print("CUBE>", terminator: " ")
-//    let input = readLine() ?? ""
-//
-//    if input == "Q" {
-//        print("Bye👋")
-//    } else {
-//        let inputArray = splitNotation(str: input)
-//        inputArray.forEach { item in
-//            print()
-//            print(item)
-//            let turnedCube = newCube.turnCube(item)
-//            newCube.printCube(turnedCube)
-//        }
-//        enterNotation(newCube)
-//    }
-//}
+    if input == "Q" {
+        print("Bye👋")
+    } else {
+        let inputArray = splitNotation(str: input)
+        inputArray.forEach { item in
+            print()
+            print(item)
+            if let safeCube = rubiksCube.turnCube(item) {
+                rubiksCube.printCube(safeCube)
+            }
+        }
+        enterNotation()
+    }
+}
 
 func splitNotation(str: String) -> [String] {
     var inputArray = [String]()
