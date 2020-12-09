@@ -7,42 +7,57 @@
 
 import Foundation
 
-struct RubiksCube {
-    var cube: [[[String]]] = [
-        [["B", "B", "B"], ["B", "B", "B"], ["B", "B", "B"]],
-        [["W", "W", "W"], ["W", "W", "W"], ["W", "W", "W"]],
-        [["O", "O", "O"], ["O", "O", "O"], ["O", "O", "O"]],
-        [["G", "G", "G"], ["G", "G", "G"], ["G", "G", "G"]],
-        [["Y", "Y", "Y"], ["Y", "Y", "Y"], ["Y", "Y", "Y"]],
-        [["R", "R", "R"], ["R", "R", "R"], ["R", "R", "R"]],
-    ]
+struct Side {
+    let topLayer: [String]
+    let middleLayer: [String]
+    let bottomLayer: [String]
     
-    func printCube() {
-        for index in 0..<cube[0].count {
-            print("                ", terminator: "")
-            printOneSide(outerIndex: 0, index: index)
-            print()
-        }
+    func printOneSide(leftPadding: Int) {
+        print(String(repeating: " ", count: leftPadding), terminator: "")
+        topLayer.forEach { print($0, terminator: " ") }
         print()
-        for index in 0...2 {
-            for outerIndex in 1...4 {
+        print(String(repeating: " ", count: leftPadding), terminator: "")
+        middleLayer.forEach { print($0, terminator: " ") }
+        print()
+        print(String(repeating: " ", count: leftPadding), terminator: "")
+        bottomLayer.forEach { print($0, terminator: " ") }
+        print()
+    }
+}
+
+struct RubiksCube {
+    var cube: [Side]
+    
+    func printCube(_ cube: [Side]) {
+        /// step-2 (평면 큐브)
+        if cube.count == 1 {
+            cube[0].printOneSide(leftPadding: 0)
+        /// step-3 (6면 큐브)
+        } else {
+            cube[0].printOneSide(leftPadding: 16)
+            /// 다음 면으로 줄바꿈
+            print()
+            for index in 1...4 {
                 print(" ", terminator: "")
-                printOneSide(outerIndex: outerIndex, index: index)
-                print("   ", terminator: "")
+                cube[index].topLayer.forEach { print($0, terminator: " ") }
+                print(String(repeating: " ", count: 3), terminator: "")
             }
             print()
-        }
-        print()
-        for index in 0..<cube[5].count {
-            print("                ", terminator: "")
-            printOneSide(outerIndex: 5, index: index)
+            for index in 1...4 {
+                print(" ", terminator: "")
+                cube[index].middleLayer.forEach { print($0, terminator: " ") }
+                print(String(repeating: " ", count: 3), terminator: "")
+            }
             print()
-        }
-    }
-    
-    func printOneSide(outerIndex: Int, index: Int) {
-        for innerIndex in 0..<cube[outerIndex][index].count {
-            print(cube[outerIndex][index][innerIndex], terminator: " ")
+            for index in 1...4 {
+                print(" ", terminator: "")
+                cube[index].bottomLayer.forEach { print($0, terminator: " ") }
+                print(String(repeating: " ", count: 3), terminator: "")
+            }
+            /// 다음 면으로 줄바꿈
+            print()
+            print()
+            cube[5].printOneSide(leftPadding: 16)
         }
     }
 }
