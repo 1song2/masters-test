@@ -13,51 +13,41 @@ struct Side {
     let bottomLayer: [String]
     
     func printOneSide(leftPadding: Int) {
-        print(String(repeating: " ", count: leftPadding), terminator: "")
-        topLayer.forEach { print($0, terminator: " ") }
-        print()
-        print(String(repeating: " ", count: leftPadding), terminator: "")
-        middleLayer.forEach { print($0, terminator: " ") }
-        print()
-        print(String(repeating: " ", count: leftPadding), terminator: "")
-        bottomLayer.forEach { print($0, terminator: " ") }
-        print()
+        for layer in [self.topLayer, self.middleLayer, self.bottomLayer] {
+            print(String(repeating: " ", count: leftPadding), terminator: "")
+            layer.forEach { print($0, terminator: " ") }
+            print()
+        }
     }
 }
 
 struct RubiksCube {
-    var cube: [Side]
+    let U, L, F, R, B, D: Side
     
-    func printCube(_ cube: [Side]) {
-        /// step-2 (평면 큐브)
-        if cube.count == 1 {
-            cube[0].printOneSide(leftPadding: 0)
-        /// step-3 (6면 큐브)
-        } else {
-            cube[0].printOneSide(leftPadding: 16)
-            /// 다음 면으로 줄바꿈
-            print()
-            for index in 1...4 {
-                print(" ", terminator: "")
-                cube[index].topLayer.forEach { print($0, terminator: " ") }
-                print(String(repeating: " ", count: 3), terminator: "")
-            }
-            print()
-            for index in 1...4 {
-                print(" ", terminator: "")
-                cube[index].middleLayer.forEach { print($0, terminator: " ") }
-                print(String(repeating: " ", count: 3), terminator: "")
-            }
-            print()
-            for index in 1...4 {
-                print(" ", terminator: "")
-                cube[index].bottomLayer.forEach { print($0, terminator: " ") }
-                print(String(repeating: " ", count: 3), terminator: "")
-            }
-            /// 다음 면으로 줄바꿈
-            print()
-            print()
-            cube[5].printOneSide(leftPadding: 16)
+    func printCube() {
+        U.printOneSide(leftPadding: 16)
+        /// 다음 면으로 줄바꿈
+        print()
+        for side in [self.L, self.F, self.R, self.B] {
+            print(" ", terminator: "")
+            side.topLayer.forEach { print($0, terminator: " ") }
+            print(String(repeating: " ", count: 3), terminator: "")
         }
+        print()
+        for side in [self.L, self.F, self.R, self.B] {
+            print(" ", terminator: "")
+            side.middleLayer.forEach { print($0, terminator: " ") }
+            print(String(repeating: " ", count: 3), terminator: "")
+        }
+        print()
+        for side in [self.L, self.F, self.R, self.B] {
+            print(" ", terminator: "")
+            side.bottomLayer.forEach { print($0, terminator: " ") }
+            print(String(repeating: " ", count: 3), terminator: "")
+        }
+        /// 다음 면으로 줄바꿈
+        print()
+        print()
+        D.printOneSide(leftPadding: 16)
     }
 }

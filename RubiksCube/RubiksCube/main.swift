@@ -19,21 +19,19 @@ import Foundation
 //print(pushChracters("apple -3 R"))  // leapp
 
 //TODO: - 객체를 적절히 활용할 것
-var flatCube = RubiksCube(cube: [
-    Side(topLayer: ["R", "R", "W"], middleLayer: ["G", "C", "W"], bottomLayer: ["G", "B", "B"])
-])
+//var flatCube = FlatCube()
 //flatCube.printCube(flatCube.cube)
 //enterNotation(flatCube)
 
-var rubiksCube = RubiksCube(cube: [
-    Side(topLayer: ["B", "B", "B"], middleLayer: ["B", "B", "B"], bottomLayer: ["B", "B", "B"]), // U
-    Side(topLayer: ["W", "W", "W"], middleLayer: ["W", "W", "W"], bottomLayer: ["W", "W", "W"]), // L
-    Side(topLayer: ["O", "O", "O"], middleLayer: ["O", "O", "O"], bottomLayer: ["O", "O", "O"]), // F
-    Side(topLayer: ["G", "G", "G"], middleLayer: ["G", "G", "G"], bottomLayer: ["G", "G", "G"]), // R
-    Side(topLayer: ["Y", "Y", "Y"], middleLayer: ["Y", "Y", "Y"], bottomLayer: ["Y", "Y", "Y"]), // B
-    Side(topLayer: ["R", "R", "R"], middleLayer: ["R", "R", "R"], bottomLayer: ["R", "R", "R"])  // D
-])
-rubiksCube.printCube(rubiksCube.cube)
+var rubiksCube = RubiksCube(
+    U: Side(topLayer: ["B", "B", "B"], middleLayer: ["B", "B", "B"], bottomLayer: ["B", "B", "B"]),
+    L: Side(topLayer: ["W", "W", "W"], middleLayer: ["W", "W", "W"], bottomLayer: ["W", "W", "W"]),
+    F: Side(topLayer: ["O", "O", "O"], middleLayer: ["O", "O", "O"], bottomLayer: ["O", "O", "O"]),
+    R: Side(topLayer: ["G", "G", "G"], middleLayer: ["G", "G", "G"], bottomLayer: ["G", "G", "G"]),
+    B: Side(topLayer: ["Y", "Y", "Y"], middleLayer: ["Y", "Y", "Y"], bottomLayer: ["Y", "Y", "Y"]),
+    D: Side(topLayer: ["R", "R", "R"], middleLayer: ["R", "R", "R"], bottomLayer: ["R", "R", "R"]))
+
+rubiksCube.printCube()
 
 //rubiksCube.printCube(rubiksCube.cube)
 //enterNotation(rubiksCube)
