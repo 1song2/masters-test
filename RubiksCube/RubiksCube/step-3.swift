@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum Position: CaseIterable {
+    case top, middle, bottom
+}
+
 struct Side {
     var topLayer: [String]
     var middleLayer: [String]
