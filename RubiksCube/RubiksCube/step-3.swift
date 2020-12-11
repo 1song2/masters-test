@@ -23,6 +23,17 @@ struct Side {
             print()
         }
     }
+    
+    func getLayer(position: Position) -> [String] {
+        switch position {
+        case .top:
+            return self.topLayer
+        case .middle:
+            return self.middleLayer
+        case .bottom:
+            return self.bottomLayer
+        }
+    }
 }
 
 struct RubiksCube {
