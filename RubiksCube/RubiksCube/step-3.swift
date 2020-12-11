@@ -85,13 +85,7 @@ struct RubiksCube {
             return turnLeft(position: .top)
         /// 가장 윗줄을 오른쪽으로 한 칸 밀기
         case "U'":
-            //turnRight()
-            let LTopLayer = L.topLayer
-            L.topLayer = B.topLayer
-            B.topLayer = R.topLayer
-            R.topLayer = F.topLayer
-            F.topLayer = LTopLayer
-            return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+            return turnRight(position: .top)
         /// 가장 왼쪽줄을 아래로 한 칸 밀기
         case "L":
             let UleftColumn = (U.topLayer[0], U.middleLayer[0], U.bottomLayer[0])
@@ -158,13 +152,7 @@ struct RubiksCube {
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
         /// 가장 아랫줄을 오른쪽으로 한 칸 밀기
         case "D":
-            //turnRight()
-            let LBottomLayer = L.bottomLayer
-            L.bottomLayer = B.bottomLayer
-            B.bottomLayer = R.bottomLayer
-            R.bottomLayer = F.bottomLayer
-            F.bottomLayer = LBottomLayer
-            return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+            return turnRight(position: .bottom)
         /// 가장 아랫줄을 왼쪽으로 한 칸 밀기
         case "D'":
             return turnLeft(position: .bottom)
@@ -179,6 +167,15 @@ struct RubiksCube {
         F.replaceLayer(with: position, of: R)
         R.replaceLayer(with: position, of: B)
         B.replaceLayer(with: position, of: tempLayer)
+        return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+    }
+    
+    mutating func turnRight(position: Position) -> RubiksCube {
+        let tempLayer = L.getLayer(for: position)
+        L.replaceLayer(with: position, of: B)
+        B.replaceLayer(with: position, of: R)
+        R.replaceLayer(with: position, of: F)
+        F.replaceLayer(with: position, of: tempLayer)
         return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
     }
 }
