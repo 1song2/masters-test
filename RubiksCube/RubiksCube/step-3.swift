@@ -24,7 +24,7 @@ struct Side {
         }
     }
     
-    func getLayer(position: Position) -> [String] {
+    func getLayer(for position: Position) -> [String] {
         switch position {
         case .top:
             return self.topLayer
