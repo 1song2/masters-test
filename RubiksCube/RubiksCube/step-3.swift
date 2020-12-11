@@ -41,27 +41,17 @@ struct RubiksCube {
     
     func printCube(_ cube: RubiksCube) {
         cube.U.printOneSide(leftPadding: 16)
-        /// 다음 면으로 줄바꿈
+        /// 줄간격 한칸
         print()
-        for side in [cube.L, cube.F, cube.R, cube.B] {
-            print(" ", terminator: "")
-            side.topLayer.forEach { print($0, terminator: " ") }
-            print(String(repeating: " ", count: 3), terminator: "")
+        for position in Position.allCases {
+            for side in [cube.L, cube.F, cube.R, cube.B] {
+                print(" ", terminator: "")
+                side.getLayer(for: position).forEach { print($0, terminator: " ") }
+                print(String(repeating: " ", count: 3), terminator: "")
+            }
+            print()
         }
-        print()
-        for side in [cube.L, cube.F, cube.R, cube.B] {
-            print(" ", terminator: "")
-            side.middleLayer.forEach { print($0, terminator: " ") }
-            print(String(repeating: " ", count: 3), terminator: "")
-        }
-        print()
-        for side in [cube.L, cube.F, cube.R, cube.B] {
-            print(" ", terminator: "")
-            side.bottomLayer.forEach { print($0, terminator: " ") }
-            print(String(repeating: " ", count: 3), terminator: "")
-        }
-        /// 다음 면으로 줄바꿈
-        print()
+        /// 줄간격 한칸
         print()
         cube.D.printOneSide(leftPadding: 16)
     }
