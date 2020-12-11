@@ -82,13 +82,7 @@ struct RubiksCube {
         switch moveNotation {
         /// 가장 윗줄을 왼쪽으로 한 칸 밀기
         case "U":
-            //turnLeft()
-            let LTopLayer = L.topLayer
-            L.topLayer = F.topLayer
-            F.topLayer = R.topLayer
-            R.topLayer = B.topLayer
-            B.topLayer = LTopLayer
-            return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+            return turnLeft(position: .top)
         /// 가장 윗줄을 오른쪽으로 한 칸 밀기
         case "U'":
             //turnRight()
@@ -173,15 +167,18 @@ struct RubiksCube {
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
         /// 가장 아랫줄을 왼쪽으로 한 칸 밀기
         case "D'":
-            //turnLeft()
-            let LBottomLayer = L.bottomLayer
-            L.bottomLayer = F.bottomLayer
-            F.bottomLayer = R.bottomLayer
-            R.bottomLayer = B.bottomLayer
-            B.bottomLayer = LBottomLayer
-            return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+            return turnLeft(position: .bottom)
         default:
             return nil
         }
+    }
+    
+    mutating func turnLeft(position: Position) -> RubiksCube {
+        let tempLayer = L.getLayer(for: position)
+        L.replaceLayer(with: position, of: F)
+        F.replaceLayer(with: position, of: R)
+        R.replaceLayer(with: position, of: B)
+        B.replaceLayer(with: position, of: tempLayer)
+        return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
     }
 }
