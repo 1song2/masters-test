@@ -34,6 +34,28 @@ struct Side {
             return self.bottomLayer
         }
     }
+    
+    mutating func replaceLayer(with position: Position, of rhs: Side) {
+        switch position {
+        case .top:
+            self.topLayer = rhs.topLayer
+        case .middle:
+            self.middleLayer = rhs.middleLayer
+        case .bottom:
+            self.bottomLayer = rhs.bottomLayer
+        }
+    }
+    
+    mutating func replaceLayer(with position: Position, of rhs: [String]) {
+        switch position {
+        case .top:
+            self.topLayer = rhs
+        case .middle:
+            self.middleLayer = rhs
+        case .bottom:
+            self.bottomLayer = rhs
+        }
+    }
 }
 
 struct RubiksCube {
