@@ -71,6 +71,7 @@ struct RubiksCube {
             R.topLayer = F.topLayer
             F.topLayer = LTopLayer
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+        /// 가장 왼쪽줄을 아래로 한 칸 밀기
         case "L":
             let UleftColumn = (U.topLayer[0], U.middleLayer[0], U.bottomLayer[0])
             (U.topLayer[0], U.middleLayer[0], U.bottomLayer[0]) = (B.bottomLayer[2], B.middleLayer[2], B.topLayer[2])
@@ -78,6 +79,7 @@ struct RubiksCube {
             (D.topLayer[0], D.middleLayer[0], D.bottomLayer[0]) = (F.topLayer[0], F.middleLayer[0], F.bottomLayer[0])
             (F.topLayer[0], F.middleLayer[0], F.bottomLayer[0]) = UleftColumn
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+        /// 가장 왼쪽줄을 위로 한 칸 밀기
         case "L'":
             let ULeftColumn = (U.topLayer[0], U.middleLayer[0], U.bottomLayer[0])
             (U.topLayer[0], U.middleLayer[0], U.bottomLayer[0]) = (F.topLayer[0], F.middleLayer[0], F.bottomLayer[0])
@@ -85,6 +87,7 @@ struct RubiksCube {
             (D.topLayer[0], D.middleLayer[0], D.bottomLayer[0]) = (B.bottomLayer[2], B.middleLayer[2], B.topLayer[2])
             (B.bottomLayer[2], B.middleLayer[2], B.topLayer[2]) = ULeftColumn
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+        /// 가장 앞쪽줄을 오른쪽으로 한 칸 밀기
         case "F":
             let DTopLayer = (D.topLayer[0], D.topLayer[1], D.topLayer[2])
             D.topLayer = [R.bottomLayer[0], R.middleLayer[0], R.topLayer[0]]
@@ -92,6 +95,7 @@ struct RubiksCube {
             U.bottomLayer = [L.bottomLayer[2], L.middleLayer[2], L.topLayer[2]]
             (L.topLayer[2], L.middleLayer[2], L.bottomLayer[2]) = DTopLayer
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+        /// 가장 앞쪽줄을 왼쪽으로 한 칸 밀기
         case "F'":
             let DTopLayer = (D.topLayer[2], D.topLayer[1], D.topLayer[0])
             D.topLayer = [L.topLayer[2], L.middleLayer[2], L.bottomLayer[2]]
@@ -99,6 +103,7 @@ struct RubiksCube {
             U.bottomLayer = [R.topLayer[0], R.middleLayer[0], R.bottomLayer[0]]
             (R.topLayer[0], R.middleLayer[0], R.bottomLayer[0]) = DTopLayer
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+        /// 가장 오른쪽줄을 위로 한 칸 밀기
         case "R":
             let URightColumn = (U.topLayer[2], U.middleLayer[2], U.bottomLayer[2])
             (U.topLayer[2], U.middleLayer[2], U.bottomLayer[2]) = (F.topLayer[2], F.middleLayer[2], F.bottomLayer[2])
@@ -106,6 +111,7 @@ struct RubiksCube {
             (D.topLayer[2], D.middleLayer[2], D.bottomLayer[2]) = (B.bottomLayer[0], B.middleLayer[0], B.topLayer[0])
             (B.bottomLayer[0], B.middleLayer[0], B.topLayer[0]) = URightColumn
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+        /// 가장 오른쪽줄을 아래로 한 칸 밀기
         case "R'":
             let URightColumn = (U.topLayer[2], U.middleLayer[2], U.bottomLayer[2])
             (U.topLayer[2], U.middleLayer[2], U.bottomLayer[2]) = (B.bottomLayer[0], B.middleLayer[0], B.topLayer[0])
@@ -113,6 +119,7 @@ struct RubiksCube {
             (D.topLayer[2], D.middleLayer[2], D.bottomLayer[2]) = (F.topLayer[2], F.middleLayer[2], F.bottomLayer[2])
             (F.topLayer[2], F.middleLayer[2], F.bottomLayer[2]) = URightColumn
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+        /// 가장 뒷쪽줄을 왼쪽으로 한 칸 밀기
         case "B":
             let DBottomLayer = (D.bottomLayer[2], D.bottomLayer[1], D.bottomLayer[0])
             D.bottomLayer = [L.topLayer[0], L.middleLayer[0], L.bottomLayer[0]]
@@ -120,6 +127,7 @@ struct RubiksCube {
             U.topLayer = [R.topLayer[2], R.middleLayer[2], R.bottomLayer[2]]
             (R.topLayer[2], R.middleLayer[2], R.bottomLayer[2]) = DBottomLayer
             return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+        /// 가장 뒷쪽줄을 오른쪽으로 한 칸 밀기
         case "B'":
             let DBottomLayer = (D.bottomLayer[0], D.bottomLayer[1], D.bottomLayer[2])
             D.bottomLayer = [R.bottomLayer[2], R.middleLayer[2], R.topLayer[2]]
