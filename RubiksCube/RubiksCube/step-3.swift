@@ -94,20 +94,10 @@ struct RubiksCube {
             return pushUp(col: 0, Bcol: 2)
         /// 가장 앞쪽줄을 오른쪽으로 한 칸 밀기
         case "F":
-            let DTopLayer = (D.topLayer[0], D.topLayer[1], D.topLayer[2])
-            D.topLayer = [R.bottomLayer[0], R.middleLayer[0], R.topLayer[0]]
-            (R.topLayer[0], R.middleLayer[0], R.bottomLayer[0]) = (U.bottomLayer[0], U.bottomLayer[1], U.bottomLayer[1])
-            U.bottomLayer = [L.bottomLayer[2], L.middleLayer[2], L.topLayer[2]]
-            (L.topLayer[2], L.middleLayer[2], L.bottomLayer[2]) = DTopLayer
-            return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+            return pushDown(Lcol: 2, Rcol: 0, Uposition: .bottom, Dposition: .top)
         /// 가장 앞쪽줄을 왼쪽으로 한 칸 밀기
         case "F'":
-            let DTopLayer = (D.topLayer[2], D.topLayer[1], D.topLayer[0])
-            D.topLayer = [L.topLayer[2], L.middleLayer[2], L.bottomLayer[2]]
-            (L.topLayer[2], L.middleLayer[2], L.bottomLayer[2]) = (U.bottomLayer[2], U.bottomLayer[1], U.bottomLayer[0])
-            U.bottomLayer = [R.topLayer[0], R.middleLayer[0], R.bottomLayer[0]]
-            (R.topLayer[0], R.middleLayer[0], R.bottomLayer[0]) = DTopLayer
-            return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+            return pushUp(Lcol: 2, Rcol: 0, Uposition: .bottom, Dposition: .top)
         /// 가장 오른쪽줄을 위로 한 칸 밀기
         case "R":
             return pushUp(col: 2, Bcol: 0)
@@ -116,20 +106,10 @@ struct RubiksCube {
             return pushDown(col: 2, Bcol: 0)
         /// 가장 뒷쪽줄을 왼쪽으로 한 칸 밀기
         case "B":
-            let DBottomLayer = (D.bottomLayer[2], D.bottomLayer[1], D.bottomLayer[0])
-            D.bottomLayer = [L.topLayer[0], L.middleLayer[0], L.bottomLayer[0]]
-            (L.topLayer[0], L.middleLayer[0], L.bottomLayer[0]) = (U.topLayer[2], U.topLayer[1], U.topLayer[0])
-            U.topLayer = [R.topLayer[2], R.middleLayer[2], R.bottomLayer[2]]
-            (R.topLayer[2], R.middleLayer[2], R.bottomLayer[2]) = DBottomLayer
-            return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+            return pushUp(Lcol: 0, Rcol: 2, Uposition: .top, Dposition: .bottom)
         /// 가장 뒷쪽줄을 오른쪽으로 한 칸 밀기
         case "B'":
-            let DBottomLayer = (D.bottomLayer[0], D.bottomLayer[1], D.bottomLayer[2])
-            D.bottomLayer = [R.bottomLayer[2], R.middleLayer[2], R.topLayer[2]]
-            (R.topLayer[2], R.middleLayer[2], R.bottomLayer[2]) = (U.topLayer[0], U.topLayer[1], U.topLayer[1])
-            U.topLayer = [L.bottomLayer[0], L.middleLayer[0], L.topLayer[0]]
-            (L.topLayer[0], L.middleLayer[0], L.bottomLayer[0]) = DBottomLayer
-            return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+            return pushDown(Lcol: 0, Rcol: 2, Uposition: .top, Dposition: .bottom)
         /// 가장 아랫줄을 오른쪽으로 한 칸 밀기
         case "D":
             return turnRight(position: .bottom)
@@ -174,6 +154,24 @@ struct RubiksCube {
         (F.topLayer[col], F.middleLayer[col], F.bottomLayer[col]) = (D.topLayer[col], D.middleLayer[col], D.bottomLayer[col])
         (D.topLayer[col], D.middleLayer[col], D.bottomLayer[col]) = (B.bottomLayer[Bcol], B.middleLayer[Bcol], B.topLayer[Bcol])
         (B.bottomLayer[Bcol], B.middleLayer[Bcol], B.topLayer[Bcol]) = tempColumn
+        return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+    }
+    
+    mutating func pushDown(Lcol: Int, Rcol: Int, Uposition: Position, Dposition: Position) -> RubiksCube {
+        let tempLayer = (D.getLayer(for: Dposition)[0], D.getLayer(for: Dposition)[1], D.getLayer(for: Dposition)[2])
+        D.replaceLayer(with: Dposition, of: [R.bottomLayer[Rcol], R.middleLayer[Rcol], R.topLayer[Rcol]])
+        (R.topLayer[Rcol], R.middleLayer[Rcol], R.bottomLayer[Rcol]) = (U.getLayer(for: Uposition)[0], U.getLayer(for: Uposition)[1], U.getLayer(for: Uposition)[2])
+        U.replaceLayer(with: Uposition, of: [L.bottomLayer[Lcol], L.middleLayer[Lcol], L.topLayer[Lcol]])
+        (L.topLayer[Lcol], L.middleLayer[Lcol], L.bottomLayer[Lcol]) = tempLayer
+        return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
+    }
+    
+    mutating func pushUp(Lcol: Int, Rcol: Int, Uposition: Position, Dposition: Position) -> RubiksCube {
+        let tempLayer = (D.getLayer(for: Dposition)[2], D.getLayer(for: Dposition)[1], D.getLayer(for: Dposition)[0])
+        D.replaceLayer(with: Dposition, of: [L.topLayer[Lcol], L.middleLayer[Lcol], L.bottomLayer[Lcol]])
+        (L.topLayer[Lcol], L.middleLayer[Lcol], L.bottomLayer[Lcol]) = (U.getLayer(for: Uposition)[2], U.getLayer(for: Uposition)[1], U.getLayer(for: Uposition)[0])
+        U.replaceLayer(with: Uposition, of: [R.topLayer[Rcol], R.middleLayer[Rcol], R.bottomLayer[Rcol]])
+        (R.topLayer[Rcol], R.middleLayer[Rcol], R.bottomLayer[Rcol]) = tempLayer
         return RubiksCube(U: self.U, L: self.L, F: self.F, R: self.R, B: self.B, D: self.D)
     }
 }
