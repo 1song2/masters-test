@@ -112,15 +112,15 @@ struct RubiksCube {
         print()
     }
     
-    mutating func scrambleCube(_ cube: RubiksCube) {
-        var scrambledCube = cube
+    mutating func scrambleCube() -> RubiksCube {
+        var scrambledCube = self
         for _ in 1...30 {
-            guard let safeNotation = MoveNotation.allCases.randomElement()?.rawValue else { return }
+            guard let safeNotation = MoveNotation.allCases.randomElement()?.rawValue else { fatalError() }
             if let safeCube = turnCube(safeNotation) {
                 scrambledCube = safeCube
             }
         }
-        printCube(scrambledCube)
+        return scrambledCube
     }
     
     mutating func turnCube(_ moveNotation: String) -> RubiksCube? {

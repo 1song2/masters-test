@@ -18,9 +18,9 @@ import Foundation
 //print(pushChracters("apple -3 L"))  // pleap
 //print(pushChracters("apple -3 R"))  // leapp
 
-var flatCube = FlatCube(cube: [["R", "R", "W"], ["G", "C", "W"], ["G", "B", "B"]])
-flatCube.printCube(flatCube.cube)
-enterNotation()
+//var flatCube = FlatCube(cube: [["R", "R", "W"], ["G", "C", "W"], ["G", "B", "B"]])
+//flatCube.printCube(flatCube.cube)
+//enterNotation()
 
 var moves = 0
 var rubiksCube = RubiksCube(
@@ -55,7 +55,7 @@ func enterNotation() {
         print("💬 총 \(moves)번 움직이셨네요!")
         print("그럼 다음에 또 만나요 👋")
     } else if input == "S" {
-        rubiksCube.scrambleCube(rubiksCube)
+        rubiksCube.printCube(rubiksCube.scrambleCube())
         enterNotation()
     } else {
         let inputArray = splitNotation(str: input)
