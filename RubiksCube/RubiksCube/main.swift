@@ -32,6 +32,7 @@ var rubiksCube = RubiksCube(
     B: Side(topLayer: ["Y", "Y", "Y"], middleLayer: ["Y", "Y", "Y"], bottomLayer: ["Y", "Y", "Y"]),
     D: Side(topLayer: ["R", "R", "R"], middleLayer: ["R", "R", "R"], bottomLayer: ["R", "R", "R"])
 )
+let start = Date()
 
 print(
     """
@@ -51,8 +52,9 @@ func enterNotation() {
     let input = readLine() ?? ""
 
     if input == "Q" {
-        print("총 \(moves)번 움직이셨네요!")
-        print("다음에 또 만나요 👋")
+        print("⌛️ 경과 시간: \(getElapsedTime())")
+        print("💬 총 \(moves)번 움직이셨네요!")
+        print("그럼 다음에 또 만나요 👋")
     } else if input == "S" {
         rubiksCube.scrambleCube(rubiksCube)
         enterNotation()
@@ -66,7 +68,12 @@ func enterNotation() {
             }
             moves += 1
         }
-        checkSolved() ? print("축하합니다! \(moves)번만에 큐브를 맞추셨어요 🥳") : enterNotation()
+        if checkSolved() {
+            print("⌛️ 경과 시간: \(getElapsedTime())")
+            print("축하합니다! \(moves)번만에 큐브를 맞추셨어요 🥳")
+        } else {
+            enterNotation()
+        }
     }
 }
 
@@ -90,4 +97,20 @@ func splitNotation(str: String) -> [String] {
         }
     }
     return inputArray
+}
+
+func getElapsedTime() -> String {
+    let timeInterval = start.timeIntervalSinceNow
+    let hours = Int(timeInterval) * -1 / 3600
+    let minutes = Int(timeInterval) * -1 / 60 % 60
+    let seconds = Int(timeInterval) * -1 % 60
+    var times = [String]()
+    if hours > 0 {
+        times.append("\(hours)시")
+    }
+    if minutes > 0 {
+        times.append("\(minutes)분")
+    }
+    times.append("\(seconds)초")
+    return times.joined(separator: " ")
 }
