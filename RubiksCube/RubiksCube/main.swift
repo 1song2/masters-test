@@ -62,9 +62,8 @@ func enterNotation() {
         inputArray.forEach { item in
             print()
             print(item)
-            if let safeCube = rubiksCube.turnCube(item) {
-                rubiksCube.printCube(safeCube)
-            }
+            guard let safeCube = rubiksCube.turnCube(item) else { return }
+            rubiksCube.printCube(safeCube)
             moves += 1
         }
         if checkSolved() {
