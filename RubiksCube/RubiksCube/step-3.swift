@@ -96,39 +96,51 @@ struct RubiksCube {
         switch moveNotation {
         /// 가장 윗줄을 왼쪽으로 한 칸 밀기
         case "U":
+            U.rotateFaceClockwise()
             return turnLeft(position: .top)
         /// 가장 윗줄을 오른쪽으로 한 칸 밀기
         case "U'":
+            U.rotateFaceCounterclockwise()
             return turnRight(position: .top)
         /// 가장 왼쪽줄을 아래로 한 칸 밀기
         case "L":
+            L.rotateFaceClockwise()
             return pushDown(col: 0, Bcol: 2)
         /// 가장 왼쪽줄을 위로 한 칸 밀기
         case "L'":
+            L.rotateFaceCounterclockwise()
             return pushUp(col: 0, Bcol: 2)
         /// 가장 앞쪽줄을 오른쪽으로 한 칸 밀기
         case "F":
+            F.rotateFaceClockwise()
             return pushDown(Lcol: 2, Rcol: 0, Uposition: .bottom, Dposition: .top)
         /// 가장 앞쪽줄을 왼쪽으로 한 칸 밀기
         case "F'":
+            F.rotateFaceCounterclockwise()
             return pushUp(Lcol: 2, Rcol: 0, Uposition: .bottom, Dposition: .top)
         /// 가장 오른쪽줄을 위로 한 칸 밀기
         case "R":
+            R.rotateFaceClockwise()
             return pushUp(col: 2, Bcol: 0)
         /// 가장 오른쪽줄을 아래로 한 칸 밀기
         case "R'":
+            R.rotateFaceCounterclockwise()
             return pushDown(col: 2, Bcol: 0)
         /// 가장 뒷쪽줄을 왼쪽으로 한 칸 밀기
         case "B":
+            B.rotateFaceClockwise()
             return pushUp(Lcol: 0, Rcol: 2, Uposition: .top, Dposition: .bottom)
         /// 가장 뒷쪽줄을 오른쪽으로 한 칸 밀기
         case "B'":
+            B.rotateFaceCounterclockwise()
             return pushDown(Lcol: 0, Rcol: 2, Uposition: .top, Dposition: .bottom)
         /// 가장 아랫줄을 오른쪽으로 한 칸 밀기
         case "D":
+            D.rotateFaceClockwise()
             return turnRight(position: .bottom)
         /// 가장 아랫줄을 왼쪽으로 한 칸 밀기
         case "D'":
+            D.rotateFaceCounterclockwise()
             return turnLeft(position: .bottom)
         default:
             return nil
