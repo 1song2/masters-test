@@ -107,6 +107,17 @@ struct RubiksCube {
         cube.D.printOneSide(leftPadding: 16)
     }
     
+    mutating func scrambleCube(_ cube: RubiksCube) {
+        var scrambledCube = cube
+        for _ in 1...30 {
+            guard let safeNotation = MoveNotation.allCases.randomElement()?.rawValue else { return }
+            if let safeCube = turnCube(safeNotation) {
+                scrambledCube = safeCube
+            }
+        }
+        printCube(scrambledCube)
+    }
+    
     mutating func turnCube(_ moveNotation: String) -> RubiksCube? {
         switch moveNotation {
         /// 가장 윗줄을 왼쪽으로 한 칸 밀기
