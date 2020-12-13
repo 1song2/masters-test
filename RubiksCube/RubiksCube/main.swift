@@ -47,7 +47,6 @@ rubiksCube.printCube(rubiksCube)
 enterNotation()
 
 func enterNotation() {
-    print()
     print("CUBE>", terminator: " ")
     let input = readLine() ?? ""
 
@@ -67,8 +66,12 @@ func enterNotation() {
             }
             moves += 1
         }
-        enterNotation()
+        checkSolved() ? print("축하합니다! \(moves)번만에 큐브를 맞추셨어요 🥳") : enterNotation()
     }
+}
+
+func checkSolved() -> Bool {
+    return rubiksCube.U.checkSideSolved() && rubiksCube.L.checkSideSolved() && rubiksCube.F.checkSideSolved() && rubiksCube.R.checkSideSolved() && rubiksCube.B.checkSideSolved() && rubiksCube.D.checkSideSolved()
 }
 
 func splitNotation(str: String) -> [String] {

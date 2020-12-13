@@ -85,6 +85,10 @@ struct Side {
         self.middleLayer = [tempSide.topLayer[1], tempSide.middleLayer[1], tempSide.bottomLayer[1]]
         self.bottomLayer = [tempSide.topLayer[0], tempSide.middleLayer[0], tempSide.bottomLayer[0]]
     }
+    
+    func checkSideSolved() -> Bool {
+        return self.topLayer == self.middleLayer && self.middleLayer == self.bottomLayer
+    }
 }
 
 struct RubiksCube {
@@ -105,6 +109,7 @@ struct RubiksCube {
         /// 줄간격 한칸
         print()
         cube.D.printOneSide(leftPadding: 16)
+        print()
     }
     
     mutating func scrambleCube(_ cube: RubiksCube) {
