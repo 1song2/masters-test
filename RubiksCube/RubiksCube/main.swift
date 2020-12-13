@@ -53,7 +53,10 @@ func enterNotation() {
 
     if input == "Q" {
         print("총 \(moves)번 움직이셨네요!")
-        print("다음에 또 만나요👋")
+        print("다음에 또 만나요 👋")
+    } else if input == "S" {
+        rubiksCube.scrambleCube(rubiksCube)
+        enterNotation()
     } else {
         let inputArray = splitNotation(str: input)
         inputArray.forEach { item in
