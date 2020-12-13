@@ -11,6 +11,21 @@ enum Position: CaseIterable {
     case top, middle, bottom
 }
 
+enum MoveNotation: String, CaseIterable {
+    case up = "U"
+    case upCCW = "U'"
+    case left = "L"
+    case leftCCW = "L'"
+    case front = "F"
+    case frontCCW = "F'"
+    case right = "R"
+    case rightCCW = "R'"
+    case back = "B"
+    case backCCW = "B'"
+    case down = "D"
+    case downCCW = "D'"
+}
+
 struct Side {
     var topLayer: [String]
     var middleLayer: [String]
@@ -95,51 +110,51 @@ struct RubiksCube {
     mutating func turnCube(_ moveNotation: String) -> RubiksCube? {
         switch moveNotation {
         /// 가장 윗줄을 왼쪽으로 한 칸 밀기
-        case "U":
+        case MoveNotation.up.rawValue:
             U.rotateFaceClockwise()
             return turnLeft(position: .top)
         /// 가장 윗줄을 오른쪽으로 한 칸 밀기
-        case "U'":
+        case MoveNotation.upCCW.rawValue:
             U.rotateFaceCounterclockwise()
             return turnRight(position: .top)
         /// 가장 왼쪽줄을 아래로 한 칸 밀기
-        case "L":
+        case MoveNotation.left.rawValue:
             L.rotateFaceClockwise()
             return pushDown(col: 0, Bcol: 2)
         /// 가장 왼쪽줄을 위로 한 칸 밀기
-        case "L'":
+        case MoveNotation.leftCCW.rawValue:
             L.rotateFaceCounterclockwise()
             return pushUp(col: 0, Bcol: 2)
         /// 가장 앞쪽줄을 오른쪽으로 한 칸 밀기
-        case "F":
+        case MoveNotation.front.rawValue:
             F.rotateFaceClockwise()
             return pushDown(Lcol: 2, Rcol: 0, Uposition: .bottom, Dposition: .top)
         /// 가장 앞쪽줄을 왼쪽으로 한 칸 밀기
-        case "F'":
+        case MoveNotation.frontCCW.rawValue:
             F.rotateFaceCounterclockwise()
             return pushUp(Lcol: 2, Rcol: 0, Uposition: .bottom, Dposition: .top)
         /// 가장 오른쪽줄을 위로 한 칸 밀기
-        case "R":
+        case MoveNotation.right.rawValue:
             R.rotateFaceClockwise()
             return pushUp(col: 2, Bcol: 0)
         /// 가장 오른쪽줄을 아래로 한 칸 밀기
-        case "R'":
+        case MoveNotation.rightCCW.rawValue:
             R.rotateFaceCounterclockwise()
             return pushDown(col: 2, Bcol: 0)
         /// 가장 뒷쪽줄을 왼쪽으로 한 칸 밀기
-        case "B":
+        case MoveNotation.back.rawValue:
             B.rotateFaceClockwise()
             return pushUp(Lcol: 0, Rcol: 2, Uposition: .top, Dposition: .bottom)
         /// 가장 뒷쪽줄을 오른쪽으로 한 칸 밀기
-        case "B'":
+        case MoveNotation.backCCW.rawValue:
             B.rotateFaceCounterclockwise()
             return pushDown(Lcol: 0, Rcol: 2, Uposition: .top, Dposition: .bottom)
         /// 가장 아랫줄을 오른쪽으로 한 칸 밀기
-        case "D":
+        case MoveNotation.down.rawValue:
             D.rotateFaceClockwise()
             return turnRight(position: .bottom)
         /// 가장 아랫줄을 왼쪽으로 한 칸 밀기
-        case "D'":
+        case MoveNotation.downCCW.rawValue:
             D.rotateFaceCounterclockwise()
             return turnLeft(position: .bottom)
         default:
