@@ -18,9 +18,9 @@ import Foundation
 //print(pushChracters("apple -3 L"))  // pleap
 //print(pushChracters("apple -3 R"))  // leapp
 
-//var flatCube = FlatCube()
-//flatCube.printCube(flatCube.cube)
-//enterNotation(flatCube)
+var flatCube = FlatCube(cube: [["R", "R", "W"], ["G", "C", "W"], ["G", "B", "B"]])
+flatCube.printCube(flatCube.cube)
+enterNotation()
 
 var moves = 0
 var rubiksCube = RubiksCube(

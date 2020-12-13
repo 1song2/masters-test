@@ -8,7 +8,7 @@
 import Foundation
 
 struct FlatCube {
-    var cube: [[String]] = [["R", "R", "W"], ["G", "C", "W"], ["G", "B", "B"]]
+    var cube: [[String]]
     
     func printCube(_ cube: [[String]]) {
         for index in 0..<cube.count {
