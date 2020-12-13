@@ -18,7 +18,6 @@ import Foundation
 //print(pushChracters("apple -3 L"))  // pleap
 //print(pushChracters("apple -3 R"))  // leapp
 
-//TODO: - 객체를 적절히 활용할 것
 //var flatCube = FlatCube()
 //flatCube.printCube(flatCube.cube)
 //enterNotation(flatCube)
