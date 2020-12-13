@@ -63,7 +63,16 @@ func splitNotation(str: String) -> [String] {
     var input = str
     while input.count != 0 {
         let firstChar = input.removeFirst()
-        input.first == "'" ? inputArray.append("\(firstChar)\(input.removeFirst())") : inputArray.append("\(firstChar)")
+        if input.first == "'" {
+            inputArray.append("\(firstChar)\(input.removeFirst())")
+        } else if input.first == "2" {
+            inputArray.append("\(firstChar)")
+            inputArray.append("\(firstChar)")
+            input.removeFirst(1)
+        } else {
+            inputArray.append("\(firstChar)")
+        }
     }
+    print(inputArray)
     return inputArray
 }
