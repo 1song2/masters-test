@@ -56,6 +56,20 @@ struct Side {
             self.bottomLayer = rhs
         }
     }
+    
+    mutating func rotateFaceClockwise() {
+        let tempSide = self
+        self.topLayer = [tempSide.bottomLayer[0], tempSide.middleLayer[0], tempSide.topLayer[0]]
+        self.middleLayer = [tempSide.bottomLayer[1], tempSide.middleLayer[1], tempSide.topLayer[1]]
+        self.bottomLayer = [tempSide.bottomLayer[2], tempSide.middleLayer[2], tempSide.topLayer[2]]
+    }
+    
+    mutating func rotateFaceCounterclockwise() {
+        let tempSide = self
+        self.topLayer = [tempSide.topLayer[2], tempSide.middleLayer[2], tempSide.bottomLayer[2]]
+        self.middleLayer = [tempSide.topLayer[1], tempSide.middleLayer[1], tempSide.bottomLayer[1]]
+        self.bottomLayer = [tempSide.topLayer[0], tempSide.middleLayer[0], tempSide.bottomLayer[0]]
+    }
 }
 
 struct RubiksCube {
