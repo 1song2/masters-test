@@ -23,6 +23,7 @@ import Foundation
 //flatCube.printCube(flatCube.cube)
 //enterNotation(flatCube)
 
+var moves = 0
 var rubiksCube = RubiksCube(
     U: Side(topLayer: ["B", "B", "B"], middleLayer: ["B", "B", "B"], bottomLayer: ["B", "B", "B"]),
     L: Side(topLayer: ["W", "W", "W"], middleLayer: ["W", "W", "W"], bottomLayer: ["W", "W", "W"]),
@@ -41,7 +42,8 @@ func enterNotation() {
     let input = readLine() ?? ""
 
     if input == "Q" {
-        print("Bye👋")
+        print("총 \(moves)번 움직이셨네요!")
+        print("다음에 또 만나요👋")
     } else {
         let inputArray = splitNotation(str: input)
         inputArray.forEach { item in
@@ -50,6 +52,7 @@ func enterNotation() {
             if let safeCube = rubiksCube.turnCube(item) {
                 rubiksCube.printCube(safeCube)
             }
+            moves += 1
         }
         enterNotation()
     }
