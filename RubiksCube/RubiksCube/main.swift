@@ -33,6 +33,16 @@ var rubiksCube = RubiksCube(
     D: Side(topLayer: ["R", "R", "R"], middleLayer: ["R", "R", "R"], bottomLayer: ["R", "R", "R"])
 )
 
+print(
+    """
+    🎪 루빅스 큐브 게임에 오신 것을 환영합니다
+    
+    1️⃣ 회전 기호를 입력해 큐브를 움직입니다
+    2️⃣ 큐브를 무작위로 섞으시려면 S를 입력해주세요
+    3️⃣ 게임을 종료하시려면 Q를 입력해주세요
+    
+    """
+)
 rubiksCube.printCube(rubiksCube)
 enterNotation()
 
@@ -73,6 +83,5 @@ func splitNotation(str: String) -> [String] {
             inputArray.append("\(firstChar)")
         }
     }
-    print(inputArray)
     return inputArray
 }
